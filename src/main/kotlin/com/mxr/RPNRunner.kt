@@ -25,8 +25,6 @@ class RPNRunner {
         if (expression.trim().isEmpty())
             return null
         val rpnArray = expressionConverter.convert(expression)
-        for (e in rpnArray)
-            print("$e\n")
         val stack = Stack<Double>()
 
         for (element in rpnArray) {
