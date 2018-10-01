@@ -73,4 +73,10 @@ class ExpressionTests {
         Assert.assertEquals(result, 8.0)
     }
 
+    @Test
+    fun expressionComplicated() {
+        val result: Double? = this.runner.calculate("2+((3*2))+12 * 3/2 + 1")
+        Assert.assertEquals(result, 20.0)
+    }
+
 }
