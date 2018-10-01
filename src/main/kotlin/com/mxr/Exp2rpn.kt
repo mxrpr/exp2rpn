@@ -105,10 +105,11 @@ class Exp2rpn {
     }
 }
 
-/*
+
 fun main(args: Array<String>) {
     val expRunner = RPNRunner()
     val expression = "(2*3)+4/2"
+    println("Example for expression $expression :")
     val result = expRunner.calculate(expression)
     println("Result: $result")
-}*/
+}
