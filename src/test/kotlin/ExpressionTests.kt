@@ -1,4 +1,5 @@
 import com.mxr.RPNRunner
+import com.mxr.ValueProvider
 import org.junit.Assert
 import org.junit.Test
 
@@ -77,6 +78,20 @@ class ExpressionTests {
     fun expressionComplicated() {
         val result: Double? = this.runner.calculate("2+((3*2))+12 * 3/2 + 1")
         Assert.assertEquals(result, 20.0)
+    }
+
+    @Test
+    fun expressionWithValueProvider() {
+        val runnerWithProvider = RPNRunner(TestValueProvider())
+        val result: Double? = runnerWithProvider.calculate("val1+val2/val3")
+        Assert.assertEquals(result, 2.0)
+    }
+
+}
+
+class TestValueProvider: ValueProvider {
+    override fun getValue(variableName: String): Double {
+        return 1.0
     }
 
 }
