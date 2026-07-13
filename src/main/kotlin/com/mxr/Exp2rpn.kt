@@ -82,10 +82,15 @@ class Exp2rpn {
         for (index in 0 until expression.length) {
             when (expression[index]) {
                 '+', '-', '*', '/', '(', ')' -> {
-                    if (!expression.substring(prevIndex, index).trim().isEmpty())
-                        result.add(expression.substring(prevIndex, index))
-                    result.add(expression[index].toString())
-                    prevIndex = index + 1
+                    val isUnaryMinus = expression[index] == '-' &&
+                            expression.substring(prevIndex, index).trim().isEmpty() &&
+                            (result.isEmpty() || result.last() == "(" || precedence.containsKey(result.last()))
+                    if (!isUnaryMinus) {
+                        if (!expression.substring(prevIndex, index).trim().isEmpty())
+                            result.add(expression.substring(prevIndex, index))
+                        result.add(expression[index].toString())
+                        prevIndex = index + 1
+                    }
                 }
             }
         }

@@ -77,13 +77,31 @@ class ExpressionTests {
     @Test
     fun expressionComplicated() {
         val result: Double? = this.runner.calculate("2+((3*2))+12 * 3/2 + 1")
-        Assert.assertEquals(result, 20.0)
+        Assert.assertEquals(result, 27.0)
     }
 
     @Test
     fun expressionSamePrecedenceOperators() {
         val result: Double? = this.runner.calculate("125 * 10 - 125 * 11")
         Assert.assertEquals(result, -125.0)
+    }
+
+    @Test
+    fun expressionWithLeadingUnaryMinus() {
+        val result: Double? = this.runner.calculate("-5+3")
+        Assert.assertEquals(result, -2.0)
+    }
+
+    @Test
+    fun expressionWithUnaryMinusAfterOperator() {
+        val result: Double? = this.runner.calculate("5*-3")
+        Assert.assertEquals(result, -15.0)
+    }
+
+    @Test
+    fun expressionWithUnaryMinusAfterParenthesis() {
+        val result: Double? = this.runner.calculate("(-5+3)*2")
+        Assert.assertEquals(result, -4.0)
     }
 
     @Test
