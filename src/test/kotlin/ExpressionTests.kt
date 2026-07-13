@@ -81,6 +81,12 @@ class ExpressionTests {
     }
 
     @Test
+    fun expressionSamePrecedenceOperators() {
+        val result: Double? = this.runner.calculate("125 * 10 - 125 * 11")
+        Assert.assertEquals(result, -125.0)
+    }
+
+    @Test
     fun expressionWithValueProvider() {
         val runnerWithProvider = RPNRunner(TestValueProvider())
         val result: Double? = runnerWithProvider.calculate("val1+val2/val3")

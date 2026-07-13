@@ -46,17 +46,8 @@ class Exp2rpn {
             }
             // if it is an operator
             else if (precedence.containsKey(component)) {
-                if (stack.size == 0) {
-
-                    for (i in stack.size - 1 downTo 0) {
-                        if (!precedence.containsKey(stack[i]))
-                            break
-                        if (precedence[component]!! <= precedence[stack[i]]!!) {
-                            output.add(stack[i])
-                            stack.removeAt(i)
-                            continue
-                        }
-                    }
+                while (stack.isNotEmpty() && precedence.containsKey(stack.last()) && precedence[component]!! <= precedence[stack.last()]!!) {
+                    output.add(stack.removeAt(stack.size - 1))
                 }
                 stack.add(component)
 
